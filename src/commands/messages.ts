@@ -3,15 +3,15 @@ import { injectable } from "inversify";
 
 @injectable()
 export class Messages {
-  private _desChaussures: string;
+  private desChaussures: string;
 
   constructor() {
-    this._desChaussures = 'Je veux des chaussures ! JE VEUX DES CHAUSSURES !';
+    this.desChaussures = 'Je veux des chaussures ! JE VEUX DES CHAUSSURES !';
   }
   
-  sendTestMessage = async (message: Message): Promise<void> => {
+  async sendTestMessage(message: Message): Promise<void> {
     if (message.content === 'CorkyBot ?')
-      await message.channel.send(this._desChaussures);
+      await message.channel.send(this.desChaussures);
   }
 }
 

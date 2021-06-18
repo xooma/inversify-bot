@@ -1,8 +1,7 @@
-import { throws } from 'assert';
 import { Client, Message } from 'discord.js';
 import { inject, injectable } from 'inversify';
 import { Messages } from './commands';
-import Types from './types/Types';
+import Types from './types/decorators';
 
 @injectable()
 export class CorkyBot {
@@ -20,11 +19,15 @@ export class CorkyBot {
     this.token = token;
   }
 
-  listenToMessages(): Promise<string> {
-    this.client.on('message', (message) => {
-      this.messages.sendTestMessage(message);
+  connect(): Promise<string> {
+    return this.client.login(this.token);
+  }
+
+  listenToMessages(): void {
+    console.table(this.client.channels.cache)
+    this.client.on('message', async (message: Message) => {
+      await this.messages.sendTestMessage(message);
     });
 
-    return this.client.login(this.token);
   }
 }

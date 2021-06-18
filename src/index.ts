@@ -1,14 +1,15 @@
 require('dotenv').config();
 import container from "./inversify.config";
 import { CorkyBot } from "./CorkyBot";
-import Types from "./types/Types";
+import Types from "./types/decorators";
 
-let corkyBot = container.get<CorkyBot>(Types.CorkyBot)
+const corkyBot = container.get<CorkyBot>(Types.CorkyBot)
 
-corkyBot.listenToMessages()
+corkyBot.connect()
   .then(() => {
+    corkyBot.listenToMessages();
     console.log('Connected !');
   })
   .catch((error) =>{
-    throw new Error(error);
+    throw error;
   });

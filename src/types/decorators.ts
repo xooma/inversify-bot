@@ -4,6 +4,8 @@ const Types = {
   Client: Symbol("Client"),
   Token: Symbol("Token"),
   Messages: Symbol("Messages"),
+  Birthday: Symbol("Birthday"),
+  BirthdayMessage: Symbol("BirthdayMessage"),
 }
 
 export default Types;
