@@ -1,9 +1,15 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "ES2019",
+    "target": "es2016",
     "module": "commonjs",
-    "lib": ["es6"],
+    "moduleResolution": "node",
+    "lib": ["es6", "dom"],
+    "types": ["node", "reflect-metadata"],
+    "typeRoots": ["src/types", "node_modules/@types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
     "allowJs": true,
     "outDir": "build",
     "rootDir": "src/",
@@ -13,5 +19,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": ["node_modules", "build"]
 }

@@ -6,21 +6,29 @@
   "author": "xooma",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint src/**/*.ts --fix",
+    "watch": "tsc -p tsconfig.json -w",
+    "test": "mocha -r ts-node/register \"specs/**/*.spec.ts\""
   },
   "dependencies": {
     "axios": "^0.21.1",
     "discord.io": "^2.5.3",
     "discord.js": "^12.5.3",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "inversify": "^5.1.1",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.18",
+    "@types/mocha": "^8.2.2",
     "@types/node": "^15.12.2",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
+    "chai": "^4.3.4",
     "eslint": "^7.28.0",
+    "mocha": "^9.0.1",
+    "ts-mockito": "^2.6.1",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   }

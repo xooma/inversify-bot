@@ -1,25 +1,30 @@
+import { throws } from 'assert';
 import { Client, Message } from 'discord.js';
+import { inject, injectable } from 'inversify';
 import { Messages } from './commands';
+import Types from './types/Types';
 
+@injectable()
 export class CorkyBot {
+  private client: Client;
+  private messages: Messages;
+  private readonly token: string;
 
-  constructor(private _client: Client, private _messages: Messages) {
-    this.startBot();
+  constructor(
+    @inject(Types.Client) client: Client,
+    @inject(Types.Token) token: string,
+    @inject(Types.Messages) messages: Messages
+  ) {
+    this.client = client;
+    this.messages = messages;
+    this.token = token;
   }
 
-  private startBot(): void {
-    this._client.login(process.env.TOKEN)
-      .then(() => {
-      this.listenToMessages();
-    })
-      .catch((error) => {
-        throw new Error(error);
-      })
-  }
-
-  private listenToMessages(): void {
-    this._client.on('message', message => {
-      this._messages.sendTestMessage(message)
+  listenToMessages(): Promise<string> {
+    this.client.on('message', (message) => {
+      this.messages.sendTestMessage(message);
     });
+
+    return this.client.login(this.token);
   }
 }

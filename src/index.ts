@@ -1,8 +1,14 @@
-import { Client } from "discord.js";
-import { Messages } from "./commands";
+require('dotenv').config();
+import container from "./inversify.config";
 import { CorkyBot } from "./CorkyBot";
-import dotenv from 'dotenv';
+import Types from "./types/Types";
 
-dotenv.config()
-new CorkyBot(new Client(), new Messages());
+let corkyBot = container.get<CorkyBot>(Types.CorkyBot)
 
+corkyBot.listenToMessages()
+  .then(() => {
+    console.log('Connected !');
+  })
+  .catch((error) =>{
+    throw new Error(error);
+  });
