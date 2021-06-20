@@ -1,5 +1,5 @@
 export type MembersBirthday = {
-  name: Array<string>;
-  birthdate: Date,
+  name: string;
+  birthdate: string,
   tag: string,
 }

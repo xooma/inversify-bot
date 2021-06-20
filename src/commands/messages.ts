@@ -1,5 +1,5 @@
-import { Message } from "discord.js";
-import { injectable } from "inversify";
+import { Message } from 'discord.js';
+import { injectable } from 'inversify';
 
 @injectable()
 export class Messages {
@@ -8,10 +8,8 @@ export class Messages {
   constructor() {
     this.desChaussures = 'Je veux des chaussures ! JE VEUX DES CHAUSSURES !';
   }
-  
+
   async sendTestMessage(message: Message): Promise<void> {
-    if (message.content === 'CorkyBot ?')
-      await message.channel.send(this.desChaussures);
+    if (message.content === 'CorkyBot ?') await message.channel.send(this.desChaussures);
   }
 }
-
